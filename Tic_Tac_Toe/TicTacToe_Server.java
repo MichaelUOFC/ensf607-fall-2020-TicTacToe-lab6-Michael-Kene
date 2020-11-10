@@ -1,26 +1,25 @@
 package Tic_Tac_Toe;
 
+
 /**
- * Course: ENSF  607
- * Title: Lab6
- * AUthors: Kenechukwu Nwabueze & Michael Adelure
- * 
+ * The Server for the
+ * TicTacToe
+ *
+ * Author - kenechukwu Nwabueze and Michael Adelure
  */
 
-import java.awt.BorderLayout;
+import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.io.IOException;
 import java.util.Formatter;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.locks.Condition;
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
 
 
 public class TicTacToe_Server extends JFrame
@@ -37,20 +36,27 @@ public class TicTacToe_Server extends JFrame
 	private Lock gameLock; // to lock game for synchronization
 	private Condition otherPlayerConnected;
 	private Condition otherPlayerTurn;
-	
-	
-	//Set up tic-tac-toe server and GUI that displays messages
+
+
+	/**
+	 * 	Set up tic-tac-toe server and GUI that displays messages
+	 */
 	
 public TicTacToe_Server()
 {
 	super("Tic-Tac-ToeServer"); //set title of window
-	
-//create ExecutorService with a thread for each player
+
+	/**
+	 * create ExecutorService with a thread for each player
+	 *
+	 */
 	runGame = Executors.newFixedThreadPool(2);
 	gameLock = new ReentrantLock(); //create lock for game
-	
-	
-//condition variable for both players being connected
+
+
+	/**
+	 * condition variable for both players being connected
+	 */
 	otherPlayerTurn = gameLock.newCondition();
 	
 	for (int i =0; i<9; i++)
@@ -78,11 +84,15 @@ public TicTacToe_Server()
 	setVisible(true);
 }// end TicTacToeServer constructor
 
-//Waiting for connection, create Player, start runnable
-public void execute()
+	/**
+	 * Waiting for connection, create Player, start runnable
+	 */
+	public void execute()
 {
-	// waiting for each client to connect
-for(int i= 0; i< players.length;i++)
+	/**
+	 * waiting for each client to connect
+	 */
+	for(int i= 0; i< players.length;i++)
 {
 	try// wait for connection, create Player, start runnable
 	{
@@ -126,9 +136,14 @@ SwingUtilities.invokeLater(
 		} // end inner class
 );
 }
-	
-// determine if move is valid
-public boolean validateAndMove(int location, int player)
+
+	/**
+	 * determine if move is valid
+	 * @param location
+	 * @param player
+	 * @return
+	 */
+	public boolean validateAndMove(int location, int player)
 {
 	// while not current player, must wait for turn
 while (player!= currentPlayer) {
@@ -147,13 +162,15 @@ finally
 	gameLock.unlock(); // unlock game after waiting
 }
 }
-//}
+
 	if (!isOccupied(location))
 {
 	board[location] = MARKS[currentPlayer];
 	currentPlayer = (currentPlayer + 1)% 2;// change player
-	
-// let new current player know that move occurred
+
+	/**
+	 * let new current player know that move occurred
+	 */
 	players[currentPlayer].otherPlayerMoved(location);
 	
 	gameLock.lock();// Lock game to signal the other player to go
@@ -175,8 +192,12 @@ else // move was not valid
 return false;
 } // end method validate and move
 
-//determine whether location is occupied
-public boolean isOccupied( int location )
+	/**
+	 * determine whether location is occupied
+	 * @param location
+	 * @return
+	 */
+	public boolean isOccupied( int location )
 {
 if ( board[ location ].equals( MARKS[ PLAYER_X ] ) ||board [ location ].equals( MARKS[ Player_O ] ) )
 return true; // location is occupied
@@ -184,8 +205,11 @@ else
 return false; // location is not occupied
 } // end method isOccupied
 
-// place code in this method to determine whether game over
-public boolean isGameOver()
+	/**
+	 * place code in this method to determine whether game over
+	 * @return
+	 */
+	public boolean isGameOver()
 {
 return false; // this is left as an exercise
 } // end method isGameOver
@@ -306,9 +330,12 @@ System.exit( 1 );
 } // end catch
 } // end finally
 } // end method run
- 
-// set whether or not thread is suspended
-public void setSuspended( boolean status )
+
+	/**
+	 * // set whether or not thread is suspended
+	 * @param status
+	 */
+	public void setSuspended( boolean status )
 {
 suspended = status; // set value of suspended
 } // end method setSuspended
