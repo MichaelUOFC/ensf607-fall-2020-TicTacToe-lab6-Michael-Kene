@@ -1,30 +1,22 @@
 package Tic_Tac_Toe;
-
 /**
- * Course: ENSF  607
- * Title: Lab6
- * AUthors: Kenechukwu Nwabueze & Michael Adelure
- * 
+ * The host
+ * Author - Kenechukwu Nwabueze & Michael Adelure
+ *
  */
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.GridLayout;
+
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.net.Socket;
-import java.net.InetAddress;
 import java.io.IOException;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
+import java.net.InetAddress;
+import java.net.Socket;
 import java.util.Formatter;
 import java.util.Scanner;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
  
 public class TicTacToeClient extends JFrame implements Runnable
 {
