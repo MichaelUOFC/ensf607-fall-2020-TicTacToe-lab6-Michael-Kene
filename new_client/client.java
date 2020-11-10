@@ -6,10 +6,11 @@ package new_client;
  * AUthors: Kenechukwu Nwabueze & Michael Adelure
  * 
  */
-import java.net.*;
-import java.io.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 public class client {
 	private PrintWriter socketOut;
@@ -17,6 +18,11 @@ public class client {
 	private BufferedReader stdIn;
 	private BufferedReader socketIn;
 
+	/**
+	 * constructor
+	 * @param serverName
+	 * @param portNumber
+	 */
 	public client(String serverName, int portNumber) {
 		try {
 			palinSocket = new Socket(serverName, portNumber);
@@ -29,6 +35,10 @@ public class client {
 		}
 	}
 
+	/**
+	 * client socket communicator
+	 *
+	 */
 	public void communicate()  {
 
 		String line = "";
@@ -61,6 +71,11 @@ public class client {
 
 	}
 
+	/**
+	 * Client Driver
+	 * @param args
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException  {
 		client aClient = new client("localhost", 8099);
 		aClient.communicate();
