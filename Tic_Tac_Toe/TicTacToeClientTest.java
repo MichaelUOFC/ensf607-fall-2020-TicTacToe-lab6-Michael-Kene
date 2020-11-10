@@ -1,11 +1,11 @@
 package Tic_Tac_Toe;
 
 /**
- * Course: ENSF  607
- * Title: Lab6
- * AUthors: Kenechukwu Nwabueze & Michael Adelure
- * .
+ * the main, program driver
+ * Author - Kenechukwu Nwabueze & Michael Adelure
+ *
  */
+
 import javax.swing.JFrame;
 public class TicTacToeClientTest
 {
