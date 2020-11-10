@@ -7,10 +7,11 @@ package date_server;
  */
 
 
-import java.net.*;
-import java.io.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 	public class client_date {
 		private PrintWriter socketOut;
@@ -18,7 +19,12 @@ import javax.swing.*;
 		private BufferedReader stdIn;
 		private BufferedReader socketIn;
 
-		//client_date constructor
+
+		/**
+		 * client_date constructor
+		 * @param serverName
+		 * @param portNumber
+		 */
 		public client_date(String serverName, int portNumber) {
 			try {
 				palinSocket = new Socket(serverName, portNumber);
@@ -31,8 +37,12 @@ import javax.swing.*;
 			}
 		}
 
-		//method that reads the input from the user and communicates
-		//with the server, and also obtains the server response
+		/**
+		 * method that reads the input from the user and communicates
+		 * with the server, and also obtains the server response
+		 *
+		 */
+
 		public void communicate()  {
 
 			String line = "";
@@ -64,6 +74,11 @@ import javax.swing.*;
 
 		}
 
+		/**
+		 * Client_date driver
+		 * @param args
+		 * @throws IOException
+		 */
 		public static void main(String[] args) throws IOException  {
 			client_date myClient = new client_date("localhost", 9090);
 			myClient.communicate();
