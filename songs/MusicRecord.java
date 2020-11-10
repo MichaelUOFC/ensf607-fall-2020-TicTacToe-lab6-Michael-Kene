@@ -3,10 +3,8 @@ package songs;
 import java.io.Serializable;
 
 /**
- * Course: ENSF  607
- * Title: Lab6
- * AUthors: Kenechukwu Nwabueze & Michael Adelure
- * 
+ *   A simple class that represents a music record
+ *
  */
 class MusicRecord implements Serializable
 	{
@@ -14,7 +12,8 @@ class MusicRecord implements Serializable
 		private String songName;
 		private String singerName;
 		private double purchase_price;
-		private static final long serialVersionUID = 1;
+		//private static final long serialVersionUID = 42L;
+		//private static final long serialVersionUID = 0;
 
         /**
          * A default constructor that builds a record with blank data
