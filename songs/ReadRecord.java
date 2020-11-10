@@ -2,7 +2,7 @@ package songs;
 /** 
  * Started by M. Moussavi
  * March 2015
- * Completed by: Kenechukwu Nwabueze and Michael Adelure
+ * Completed by: STUDENT(S) NAME
  */
 
 import java.io.EOFException;
@@ -35,7 +35,7 @@ public class ReadRecord {
         
         /* The following loop is supposed to use readObject method of
          * ObjectInputSteam to read a MusicRecord object from a binary file that
-         * contains several reords.
+         * contains several records.
          * Loop should terminate when an EOFException is thrown.
          */
         
@@ -56,8 +56,6 @@ public class ReadRecord {
         }catch( EOFException e){
         	System.err.println("End of file.");
         	return;
-        	
-        
         			
         		}
         	}
@@ -70,7 +68,7 @@ public class ReadRecord {
     public static void main(String [] args) throws ClassNotFoundException, IOException
     {
         ReadRecord d = new ReadRecord();
-        //d.readObjectsFromFile("mySongs.ser");
-        d.readObjectsFromFile("allSongs.ser");
+        d.readObjectsFromFile("mySongs.ser");
+        //d.readObjectsFromFile("allSongs.ser");
     }
 }
